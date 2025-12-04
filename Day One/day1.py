@@ -9,17 +9,16 @@ def read_safe_instructions():
     with open(DAY_ONE_INPUT) as file:
         for line in file:
             line = line.strip()
-            direction = line[0]
-            number = int(line[1:])
+            direction, number = line[0], int(line[1:])
             
-            if direction == "L":
-                dial = move_dial(dial, -number)
-            if direction == "R":
-                dial = move_dial(dial, number)
+            if direction == LEFT:
+                move_dial(dial, -number)
+            if direction == RIGHT:
+                move_dial(dial, number)
             if dial == 0:
                 passcode += 1
+                
     return passcode
-
 
 def move_dial(dial, number):
     return (dial + number) % 100
